@@ -1,0 +1,1240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище AtlantModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client_in_Group">
+          <Key>
+            <PropertyRef Name="clients_group_id" />
+          </Key>
+          <Property Name="clients_group_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client_id" Type="int" Nullable="false" />
+          <Property Name="Group_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="12" Nullable="false" />
+          <Property Name="Gender" Type="char" MaxLength="10" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="equipment_id" />
+          </Key>
+          <Property Name="equipment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="group_id" />
+          </Key>
+          <Property Name="group_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Max_kol" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="trainer_id" />
+          </Key>
+          <Property Name="trainer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="Exp" Type="int" Nullable="false" />
+          <Property Name="Vid_sporta" Type="nvarchar" MaxLength="75" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="room_id" />
+          </Key>
+          <Property Name="room_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Equipment" Type="int" Nullable="false" />
+          <Property Name="Capacity" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="schedule_id" />
+          </Key>
+          <Property Name="schedule_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Day" Type="date" Nullable="false" />
+          <Property Name="Start_Time_id" Type="int" Nullable="false" />
+          <Property Name="End_Time_id" Type="int" Nullable="false" />
+          <Property Name="Room_id" Type="int" Nullable="false" />
+          <Property Name="Group_id" Type="int" Nullable="false" />
+          <Property Name="Section_id" Type="int" Nullable="false" />
+          <Property Name="Trainer_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sections">
+          <Key>
+            <PropertyRef Name="sections_id" />
+          </Key>
+          <Property Name="sections_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Time">
+          <Key>
+            <PropertyRef Name="time_id" />
+          </Key>
+          <Property Name="time_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Time" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Time_off_weekday">
+          <Key>
+            <PropertyRef Name="timeweekday_id" />
+          </Key>
+          <Property Name="timeweekday_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Weekday_id" Type="int" Nullable="false" />
+          <Property Name="Time_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Weekday">
+          <Key>
+            <PropertyRef Name="weekday_id" />
+          </Key>
+          <Property Name="weekday_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Weekday" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Client_in_Group_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Client_in_Group" Type="Self.Client_in_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="Client_in_Group">
+              <PropertyRef Name="Client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_in_Group_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="Client_in_Group" Type="Self.Client_in_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="group_id" />
+            </Principal>
+            <Dependent Role="Client_in_Group">
+              <PropertyRef Name="Group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rooms_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="equipment_id" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="Equipment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Instructor">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="trainer_id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="Trainer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Rooms">
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="room_id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="Room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Sections">
+          <End Role="Sections" Type="Self.Sections" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="sections_id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="Section_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Time">
+          <End Role="Time" Type="Self.Time" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="time_id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="Start_Time_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Time1">
+          <End Role="Time" Type="Self.Time" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="time_id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="End_Time_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Time_off_weekday_Time">
+          <End Role="Time" Type="Self.Time" Multiplicity="1" />
+          <End Role="Time_off_weekday" Type="Self.Time_off_weekday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="time_id" />
+            </Principal>
+            <Dependent Role="Time_off_weekday">
+              <PropertyRef Name="Time_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Time_off_weekday_Weekday">
+          <End Role="Weekday" Type="Self.Weekday" Multiplicity="1" />
+          <End Role="Time_off_weekday" Type="Self.Time_off_weekday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Weekday">
+              <PropertyRef Name="weekday_id" />
+            </Principal>
+            <Dependent Role="Time_off_weekday">
+              <PropertyRef Name="Weekday_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CIG_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_client" Type="int" Mode="In" />
+          <Parameter Name="id_group" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CIG_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_client" Type="int" Mode="In" />
+          <Parameter Name="id_group" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Client_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="client_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Client_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+          <Parameter Name="Phone" Type="nchar" Mode="In" />
+          <Parameter Name="Gender" Type="char" Mode="In" />
+          <Parameter Name="adress" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Client_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="client_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Client_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="client_id" Type="int" Mode="In" />
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+          <Parameter Name="Phone" Type="nchar" Mode="In" />
+          <Parameter Name="Gender" Type="char" Mode="In" />
+          <Parameter Name="adress" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Coachs_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_coach" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Coachs_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nchar" Mode="In" />
+          <Parameter Name="exp" Type="int" Mode="In" />
+          <Parameter Name="VidSporta" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Coachs_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_coach" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Coachs_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nchar" Mode="In" />
+          <Parameter Name="exp" Type="int" Mode="In" />
+          <Parameter Name="VidSporta" Type="nvarchar" Mode="In" />
+          <Parameter Name="id_coach" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Group_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="group_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Groups_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_group" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Groups_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaxKolLudei" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Groups_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaxKolLudei" Type="int" Mode="In" />
+          <Parameter Name="id_group" Type="int" Mode="In" />
+        </Function>
+        <Function Name="List_clients_in_group" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="group_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Raspisanie_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="schedule_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Raspisanie_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Day" Type="date" Mode="In" />
+          <Parameter Name="Start_Time_id" Type="int" Mode="In" />
+          <Parameter Name="End_Time_id" Type="int" Mode="In" />
+          <Parameter Name="Room_id" Type="int" Mode="In" />
+          <Parameter Name="Group_id" Type="int" Mode="In" />
+          <Parameter Name="Section_id" Type="int" Mode="In" />
+          <Parameter Name="Trainer_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Schedule_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="day" Type="date" Mode="In" />
+        </Function>
+        <Function Name="Schedule_Select_Period" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sPeriod" Type="date" Mode="In" />
+          <Parameter Name="ePeriod" Type="date" Mode="In" />
+        </Function>
+        <Function Name="Schedule_Select_Period_Room" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="room_id" Type="int" Mode="In" />
+          <Parameter Name="sPeriod" Type="date" Mode="In" />
+          <Parameter Name="ePeriod" Type="date" Mode="In" />
+        </Function>
+        <Function Name="Schedule_Select_Period_Trainer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="trainer_id" Type="int" Mode="In" />
+          <Parameter Name="sPeriod" Type="date" Mode="In" />
+          <Parameter Name="ePeriod" Type="date" Mode="In" />
+        </Function>
+        <Function Name="Schedule_Select_Room" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="room_id" Type="int" Mode="In" />
+          <Parameter Name="day" Type="date" Mode="In" />
+        </Function>
+        <Function Name="Schedule_Select_Trainer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="trainer_id" Type="int" Mode="In" />
+          <Parameter Name="day" Type="date" Mode="In" />
+        </Function>
+        <Function Name="Section_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_section" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Section_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="desc" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Section_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_section" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Section_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_section" Type="int" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="desc" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Users_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="Role" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Users_Role" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="issqlrole" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Users_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Users_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="Role" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="Хранилище AtlantModelContainer">
+          <EntitySet Name="Client_in_Group" EntityType="Self.Client_in_Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Instructor" EntityType="Self.Instructor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sections" EntityType="Self.Sections" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Time" EntityType="Self.Time" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Time_off_weekday" EntityType="Self.Time_off_weekday" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Weekday" EntityType="Self.Weekday" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Client_in_Group_Customer" Association="Self.FK_Client_in_Group_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Client_in_Group" EntitySet="Client_in_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_in_Group_Groups" Association="Self.FK_Client_in_Group_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Client_in_Group" EntitySet="Client_in_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rooms_Equipment" Association="Self.FK_Rooms_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Instructor" Association="Self.FK_Schedule_Instructor">
+            <End Role="Instructor" EntitySet="Instructor" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Rooms" Association="Self.FK_Schedule_Rooms">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Sections" Association="Self.FK_Schedule_Sections">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Time" Association="Self.FK_Schedule_Time">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Time1" Association="Self.FK_Schedule_Time1">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Time_off_weekday_Time" Association="Self.FK_Time_off_weekday_Time">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Time_off_weekday" EntitySet="Time_off_weekday" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Time_off_weekday_Weekday" Association="Self.FK_Time_off_weekday_Weekday">
+            <End Role="Weekday" EntitySet="Weekday" />
+            <End Role="Time_off_weekday" EntitySet="Time_off_weekday" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AtlantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client_in_Group">
+          <Key>
+            <PropertyRef Name="clients_group_id" />
+          </Key>
+          <Property Name="clients_group_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client_id" Type="Int32" Nullable="false" />
+          <Property Name="Group_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Client_in_Group_Customer" FromRole="Client_in_Group" ToRole="Customer" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_Client_in_Group_Groups" FromRole="Client_in_Group" ToRole="Groups" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Client_in_Group" Relationship="Self.FK_Client_in_Group_Customer" FromRole="Customer" ToRole="Client_in_Group" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="equipment_id" />
+          </Key>
+          <Property Name="equipment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK_Rooms_Equipment" FromRole="Equipment" ToRole="Rooms" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="group_id" />
+          </Key>
+          <Property Name="group_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Max_kol" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client_in_Group" Relationship="Self.FK_Client_in_Group_Groups" FromRole="Groups" ToRole="Client_in_Group" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="trainer_id" />
+          </Key>
+          <Property Name="trainer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Exp" Type="Int32" Nullable="false" />
+          <Property Name="Vid_sporta" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Instructor" FromRole="Instructor" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="room_id" />
+          </Key>
+          <Property Name="room_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Equipment" Type="Int32" Nullable="false" />
+          <Property Name="Capacity" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Equipment1" Relationship="Self.FK_Rooms_Equipment" FromRole="Rooms" ToRole="Equipment" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Rooms" FromRole="Rooms" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="schedule_id" />
+          </Key>
+          <Property Name="schedule_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Day" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Start_Time_id" Type="Int32" Nullable="false" />
+          <Property Name="End_Time_id" Type="Int32" Nullable="false" />
+          <Property Name="Room_id" Type="Int32" Nullable="false" />
+          <Property Name="Group_id" Type="Int32" Nullable="false" />
+          <Property Name="Section_id" Type="Int32" Nullable="false" />
+          <Property Name="Trainer_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Instructor" Relationship="Self.FK_Schedule_Instructor" FromRole="Schedule" ToRole="Instructor" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK_Schedule_Rooms" FromRole="Schedule" ToRole="Rooms" />
+          <NavigationProperty Name="Sections" Relationship="Self.FK_Schedule_Sections" FromRole="Schedule" ToRole="Sections" />
+          <NavigationProperty Name="Time" Relationship="Self.FK_Schedule_Time" FromRole="Schedule" ToRole="Time" />
+          <NavigationProperty Name="Time1" Relationship="Self.FK_Schedule_Time1" FromRole="Schedule" ToRole="Time" />
+        </EntityType>
+        <EntityType Name="Sections">
+          <Key>
+            <PropertyRef Name="sections_id" />
+          </Key>
+          <Property Name="sections_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Sections" FromRole="Sections" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Time">
+          <Key>
+            <PropertyRef Name="time_id" />
+          </Key>
+          <Property Name="time_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Time1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Time" FromRole="Time" ToRole="Schedule" />
+          <NavigationProperty Name="Schedule1" Relationship="Self.FK_Schedule_Time1" FromRole="Time" ToRole="Schedule" />
+          <NavigationProperty Name="Time_off_weekday" Relationship="Self.FK_Time_off_weekday_Time" FromRole="Time" ToRole="Time_off_weekday" />
+        </EntityType>
+        <EntityType Name="Time_off_weekday">
+          <Key>
+            <PropertyRef Name="timeweekday_id" />
+          </Key>
+          <Property Name="timeweekday_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Weekday_id" Type="Int32" Nullable="false" />
+          <Property Name="Time_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Time" Relationship="Self.FK_Time_off_weekday_Time" FromRole="Time_off_weekday" ToRole="Time" />
+          <NavigationProperty Name="Weekday" Relationship="Self.FK_Time_off_weekday_Weekday" FromRole="Time_off_weekday" ToRole="Weekday" />
+        </EntityType>
+        <EntityType Name="Weekday">
+          <Key>
+            <PropertyRef Name="weekday_id" />
+          </Key>
+          <Property Name="weekday_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Weekday1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Time_off_weekday" Relationship="Self.FK_Time_off_weekday_Weekday" FromRole="Weekday" ToRole="Time_off_weekday" />
+        </EntityType>
+        <Association Name="FK_Client_in_Group_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Client_in_Group" Type="Self.Client_in_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="Client_in_Group">
+              <PropertyRef Name="Client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_in_Group_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="Client_in_Group" Type="Self.Client_in_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="group_id" />
+            </Principal>
+            <Dependent Role="Client_in_Group">
+              <PropertyRef Name="Group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rooms_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="equipment_id" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="Equipment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Instructor">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="trainer_id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="Trainer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Rooms">
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="room_id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="Room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Sections">
+          <End Role="Sections" Type="Self.Sections" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="sections_id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="Section_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Time">
+          <End Role="Time" Type="Self.Time" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="time_id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="Start_Time_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Time1">
+          <End Role="Time" Type="Self.Time" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="time_id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="End_Time_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Time_off_weekday_Time">
+          <End Role="Time" Type="Self.Time" Multiplicity="1" />
+          <End Role="Time_off_weekday" Type="Self.Time_off_weekday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="time_id" />
+            </Principal>
+            <Dependent Role="Time_off_weekday">
+              <PropertyRef Name="Time_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Time_off_weekday_Weekday">
+          <End Role="Weekday" Type="Self.Weekday" Multiplicity="1" />
+          <End Role="Time_off_weekday" Type="Self.Time_off_weekday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Weekday">
+              <PropertyRef Name="weekday_id" />
+            </Principal>
+            <Dependent Role="Time_off_weekday">
+              <PropertyRef Name="Weekday_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AtlantEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client_in_Group" EntityType="Self.Client_in_Group" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" />
+          <EntitySet Name="Instructor" EntityType="Self.Instructor" />
+          <EntitySet Name="Rooms" EntityType="Self.Rooms" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" />
+          <EntitySet Name="Sections" EntityType="Self.Sections" />
+          <EntitySet Name="Time" EntityType="Self.Time" />
+          <EntitySet Name="Time_off_weekday" EntityType="Self.Time_off_weekday" />
+          <EntitySet Name="Weekday" EntityType="Self.Weekday" />
+          <AssociationSet Name="FK_Client_in_Group_Customer" Association="Self.FK_Client_in_Group_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Client_in_Group" EntitySet="Client_in_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_in_Group_Groups" Association="Self.FK_Client_in_Group_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Client_in_Group" EntitySet="Client_in_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rooms_Equipment" Association="Self.FK_Rooms_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Instructor" Association="Self.FK_Schedule_Instructor">
+            <End Role="Instructor" EntitySet="Instructor" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Rooms" Association="Self.FK_Schedule_Rooms">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Sections" Association="Self.FK_Schedule_Sections">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Time" Association="Self.FK_Schedule_Time">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Time1" Association="Self.FK_Schedule_Time1">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Time_off_weekday_Time" Association="Self.FK_Time_off_weekday_Time">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Time_off_weekday" EntitySet="Time_off_weekday" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Time_off_weekday_Weekday" Association="Self.FK_Time_off_weekday_Weekday">
+            <End Role="Weekday" EntitySet="Weekday" />
+            <End Role="Time_off_weekday" EntitySet="Time_off_weekday" />
+          </AssociationSet>
+          <FunctionImport Name="CIG_Delete">
+            <Parameter Name="id_client" Mode="In" Type="Int32" />
+            <Parameter Name="id_group" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CIG_Insert">
+            <Parameter Name="id_client" Mode="In" Type="Int32" />
+            <Parameter Name="id_group" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Client_Delete">
+            <Parameter Name="client_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Client_Insert">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Gender" Mode="In" Type="String" />
+            <Parameter Name="adress" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Client_Select" ReturnType="Collection(AtlantModel.Client_Select_Result)">
+            <Parameter Name="client_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Client_Update">
+            <Parameter Name="client_id" Mode="In" Type="Int32" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Gender" Mode="In" Type="String" />
+            <Parameter Name="adress" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Coachs_Delete">
+            <Parameter Name="Id_coach" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Coachs_Insert">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="exp" Mode="In" Type="Int32" />
+            <Parameter Name="VidSporta" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Coachs_Select" ReturnType="Collection(AtlantModel.Coachs_Select_Result)">
+            <Parameter Name="Id_coach" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Coachs_Update">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="exp" Mode="In" Type="Int32" />
+            <Parameter Name="VidSporta" Mode="In" Type="String" />
+            <Parameter Name="id_coach" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Group_Select" ReturnType="Collection(AtlantModel.Group_Select_Result)">
+            <Parameter Name="group_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Groups_Delete">
+            <Parameter Name="id_group" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Groups_Insert">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="MaxKolLudei" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Groups_Update">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="MaxKolLudei" Mode="In" Type="Int32" />
+            <Parameter Name="id_group" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="List_clients_in_group" ReturnType="Collection(AtlantModel.List_clients_in_group_Result)">
+            <Parameter Name="group_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Raspisanie_Delete">
+            <Parameter Name="schedule_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Raspisanie_Insert">
+            <Parameter Name="Day" Mode="In" Type="DateTime" />
+            <Parameter Name="Start_Time_id" Mode="In" Type="Int32" />
+            <Parameter Name="End_Time_id" Mode="In" Type="Int32" />
+            <Parameter Name="Room_id" Mode="In" Type="Int32" />
+            <Parameter Name="Group_id" Mode="In" Type="Int32" />
+            <Parameter Name="Section_id" Mode="In" Type="Int32" />
+            <Parameter Name="Trainer_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Schedule_Select" ReturnType="Collection(AtlantModel.Schedule_Select_Result)">
+            <Parameter Name="day" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Schedule_Select_Period" ReturnType="Collection(AtlantModel.Schedule_Select_Period_Result)">
+            <Parameter Name="sPeriod" Mode="In" Type="DateTime" />
+            <Parameter Name="ePeriod" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Schedule_Select_Period_Room" ReturnType="Collection(AtlantModel.Schedule_Select_Period_Room_Result)">
+            <Parameter Name="room_id" Mode="In" Type="Int32" />
+            <Parameter Name="sPeriod" Mode="In" Type="DateTime" />
+            <Parameter Name="ePeriod" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Schedule_Select_Period_Trainer" ReturnType="Collection(AtlantModel.Schedule_Select_Period_Trainer_Result)">
+            <Parameter Name="trainer_id" Mode="In" Type="Int32" />
+            <Parameter Name="sPeriod" Mode="In" Type="DateTime" />
+            <Parameter Name="ePeriod" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Schedule_Select_Room" ReturnType="Collection(AtlantModel.Schedule_Select_Room_Result)">
+            <Parameter Name="room_id" Mode="In" Type="Int32" />
+            <Parameter Name="day" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Schedule_Select_Trainer" ReturnType="Collection(AtlantModel.Schedule_Select_Trainer_Result)">
+            <Parameter Name="trainer_id" Mode="In" Type="Int32" />
+            <Parameter Name="day" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Section_Delete">
+            <Parameter Name="id_section" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Section_Insert">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="desc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Section_Select" ReturnType="Collection(AtlantModel.Section_Select_Result)">
+            <Parameter Name="id_section" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Section_Update">
+            <Parameter Name="id_section" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="desc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Users_Insert">
+            <Parameter Name="Login" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Role" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Users_Role" ReturnType="Collection(String)">
+            <Parameter Name="issqlrole" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Users_Select" ReturnType="Collection(AtlantModel.Users_Select_Result)" />
+          <FunctionImport Name="Users_Update">
+            <Parameter Name="Login" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Role" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Client_Select_Result">
+          <Property Type="Int32" Name="customer_id" Nullable="false" />
+          <Property Type="String" Name="firstname" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="lastname" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="phone" Nullable="false" MaxLength="12" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Coachs_Select_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Имя" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Фамилия" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Телефон" Nullable="false" MaxLength="15" />
+          <Property Type="Int32" Name="Опыт" Nullable="false" />
+          <Property Type="String" Name="Вид_занятия" Nullable="true" MaxLength="75" />
+        </ComplexType>
+        <ComplexType Name="Group_Select_Result">
+          <Property Type="Int32" Name="group_id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Max_kol" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="List_clients_in_group_Result">
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="Schedule_Select_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="День" Nullable="false" />
+          <Property Type="String" Name="НачалаЗанятия" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="КонецЗанятия" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Спортзал" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Группа" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ВидСпорта" Nullable="false" />
+          <Property Type="String" Name="Тренер" Nullable="false" MaxLength="61" />
+        </ComplexType>
+        <ComplexType Name="Schedule_Select_Period_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="День" Nullable="false" />
+          <Property Type="String" Name="НачалаЗанятия" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="КонецЗанятия" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Спортзал" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Группа" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ВидСпорта" Nullable="false" />
+          <Property Type="String" Name="Тренер" Nullable="false" MaxLength="61" />
+        </ComplexType>
+        <ComplexType Name="Schedule_Select_Period_Room_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="День" Nullable="false" />
+          <Property Type="String" Name="НачалаЗанятия" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="КонецЗанятия" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Спортзал" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Группа" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ВидСпорта" Nullable="false" />
+          <Property Type="String" Name="Тренер" Nullable="false" MaxLength="61" />
+        </ComplexType>
+        <ComplexType Name="Schedule_Select_Period_Trainer_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="День" Nullable="false" />
+          <Property Type="String" Name="НачалаЗанятия" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="КонецЗанятия" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Спортзал" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Группа" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ВидСпорта" Nullable="false" />
+          <Property Type="String" Name="Тренер" Nullable="false" MaxLength="61" />
+        </ComplexType>
+        <ComplexType Name="Schedule_Select_Room_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="День" Nullable="false" />
+          <Property Type="String" Name="НачалаЗанятия" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="КонецЗанятия" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Спортзал" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Группа" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ВидСпорта" Nullable="false" />
+          <Property Type="String" Name="Тренер" Nullable="false" MaxLength="61" />
+        </ComplexType>
+        <ComplexType Name="Schedule_Select_Trainer_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="День" Nullable="false" />
+          <Property Type="String" Name="НачалаЗанятия" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="КонецЗанятия" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Спортзал" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Группа" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ВидСпорта" Nullable="false" />
+          <Property Type="String" Name="Тренер" Nullable="false" MaxLength="61" />
+        </ComplexType>
+        <ComplexType Name="Section_Select_Result">
+          <Property Type="Int32" Name="sections_id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Users_Select_Result">
+          <Property Type="String" Name="БазаДанных" Nullable="false" MaxLength="6" />
+          <Property Type="String" Name="ИмяПользователя" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Роль" Nullable="false" MaxLength="128" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AtlantModelContainer" CdmEntityContainer="AtlantEntities">
+          <EntitySetMapping Name="Client_in_Group">
+            <EntityTypeMapping TypeName="AtlantModel.Client_in_Group">
+              <MappingFragment StoreEntitySet="Client_in_Group">
+                <ScalarProperty Name="clients_group_id" ColumnName="clients_group_id" />
+                <ScalarProperty Name="Client_id" ColumnName="Client_id" />
+                <ScalarProperty Name="Group_id" ColumnName="Group_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="AtlantModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment">
+            <EntityTypeMapping TypeName="AtlantModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="equipment_id" ColumnName="equipment_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="AtlantModel.Groups">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Max_kol" ColumnName="Max_kol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instructor">
+            <EntityTypeMapping TypeName="AtlantModel.Instructor">
+              <MappingFragment StoreEntitySet="Instructor">
+                <ScalarProperty Name="trainer_id" ColumnName="trainer_id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Exp" ColumnName="Exp" />
+                <ScalarProperty Name="Vid_sporta" ColumnName="Vid_sporta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="AtlantModel.Rooms">
+              <MappingFragment StoreEntitySet="Rooms">
+                <ScalarProperty Name="room_id" ColumnName="room_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Equipment" ColumnName="Equipment" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedule">
+            <EntityTypeMapping TypeName="AtlantModel.Schedule">
+              <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="schedule_id" ColumnName="schedule_id" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Start_Time_id" ColumnName="Start_Time_id" />
+                <ScalarProperty Name="End_Time_id" ColumnName="End_Time_id" />
+                <ScalarProperty Name="Room_id" ColumnName="Room_id" />
+                <ScalarProperty Name="Group_id" ColumnName="Group_id" />
+                <ScalarProperty Name="Section_id" ColumnName="Section_id" />
+                <ScalarProperty Name="Trainer_id" ColumnName="Trainer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="AtlantModel.Sections">
+              <MappingFragment StoreEntitySet="Sections">
+                <ScalarProperty Name="sections_id" ColumnName="sections_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Time">
+            <EntityTypeMapping TypeName="AtlantModel.Time">
+              <MappingFragment StoreEntitySet="Time">
+                <ScalarProperty Name="time_id" ColumnName="time_id" />
+                <ScalarProperty Name="Time1" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Time_off_weekday">
+            <EntityTypeMapping TypeName="AtlantModel.Time_off_weekday">
+              <MappingFragment StoreEntitySet="Time_off_weekday">
+                <ScalarProperty Name="timeweekday_id" ColumnName="timeweekday_id" />
+                <ScalarProperty Name="Weekday_id" ColumnName="Weekday_id" />
+                <ScalarProperty Name="Time_id" ColumnName="Time_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Weekday">
+            <EntityTypeMapping TypeName="AtlantModel.Weekday">
+              <MappingFragment StoreEntitySet="Weekday">
+                <ScalarProperty Name="weekday_id" ColumnName="weekday_id" />
+                <ScalarProperty Name="Weekday1" ColumnName="Weekday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CIG_Delete" FunctionName="Хранилище AtlantModel.CIG_Delete" />
+          <FunctionImportMapping FunctionImportName="CIG_Insert" FunctionName="Хранилище AtlantModel.CIG_Insert" />
+          <FunctionImportMapping FunctionImportName="Client_Delete" FunctionName="Хранилище AtlantModel.Client_Delete" />
+          <FunctionImportMapping FunctionImportName="Client_Insert" FunctionName="Хранилище AtlantModel.Client_Insert" />
+          <FunctionImportMapping FunctionImportName="Client_Select" FunctionName="Хранилище AtlantModel.Client_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AtlantModel.Client_Select_Result">
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Client_Update" FunctionName="Хранилище AtlantModel.Client_Update" />
+          <FunctionImportMapping FunctionImportName="Coachs_Delete" FunctionName="Хранилище AtlantModel.Coachs_Delete" />
+          <FunctionImportMapping FunctionImportName="Coachs_Insert" FunctionName="Хранилище AtlantModel.Coachs_Insert" />
+          <FunctionImportMapping FunctionImportName="Coachs_Select" FunctionName="Хранилище AtlantModel.Coachs_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AtlantModel.Coachs_Select_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Опыт" ColumnName="Опыт" />
+                <ScalarProperty Name="Вид_занятия" ColumnName="Вид_занятия" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Coachs_Update" FunctionName="Хранилище AtlantModel.Coachs_Update" />
+          <FunctionImportMapping FunctionImportName="Group_Select" FunctionName="Хранилище AtlantModel.Group_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AtlantModel.Group_Select_Result">
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Max_kol" ColumnName="Max_kol" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Groups_Delete" FunctionName="Хранилище AtlantModel.Groups_Delete" />
+          <FunctionImportMapping FunctionImportName="Groups_Insert" FunctionName="Хранилище AtlantModel.Groups_Insert" />
+          <FunctionImportMapping FunctionImportName="Groups_Update" FunctionName="Хранилище AtlantModel.Groups_Update" />
+          <FunctionImportMapping FunctionImportName="List_clients_in_group" FunctionName="Хранилище AtlantModel.List_clients_in_group">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AtlantModel.List_clients_in_group_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Raspisanie_Delete" FunctionName="Хранилище AtlantModel.Raspisanie_Delete" />
+          <FunctionImportMapping FunctionImportName="Raspisanie_Insert" FunctionName="Хранилище AtlantModel.Raspisanie_Insert" />
+          <FunctionImportMapping FunctionImportName="Schedule_Select" FunctionName="Хранилище AtlantModel.Schedule_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AtlantModel.Schedule_Select_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="День" ColumnName="День" />
+                <ScalarProperty Name="НачалаЗанятия" ColumnName="НачалаЗанятия" />
+                <ScalarProperty Name="КонецЗанятия" ColumnName="КонецЗанятия" />
+                <ScalarProperty Name="Спортзал" ColumnName="Спортзал" />
+                <ScalarProperty Name="Группа" ColumnName="Группа" />
+                <ScalarProperty Name="ВидСпорта" ColumnName="ВидСпорта" />
+                <ScalarProperty Name="Тренер" ColumnName="Тренер" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Schedule_Select_Period" FunctionName="Хранилище AtlantModel.Schedule_Select_Period">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AtlantModel.Schedule_Select_Period_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="День" ColumnName="День" />
+                <ScalarProperty Name="НачалаЗанятия" ColumnName="НачалаЗанятия" />
+                <ScalarProperty Name="КонецЗанятия" ColumnName="КонецЗанятия" />
+                <ScalarProperty Name="Спортзал" ColumnName="Спортзал" />
+                <ScalarProperty Name="Группа" ColumnName="Группа" />
+                <ScalarProperty Name="ВидСпорта" ColumnName="ВидСпорта" />
+                <ScalarProperty Name="Тренер" ColumnName="Тренер" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Schedule_Select_Period_Room" FunctionName="Хранилище AtlantModel.Schedule_Select_Period_Room">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AtlantModel.Schedule_Select_Period_Room_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="День" ColumnName="День" />
+                <ScalarProperty Name="НачалаЗанятия" ColumnName="НачалаЗанятия" />
+                <ScalarProperty Name="КонецЗанятия" ColumnName="КонецЗанятия" />
+                <ScalarProperty Name="Спортзал" ColumnName="Спортзал" />
+                <ScalarProperty Name="Группа" ColumnName="Группа" />
+                <ScalarProperty Name="ВидСпорта" ColumnName="ВидСпорта" />
+                <ScalarProperty Name="Тренер" ColumnName="Тренер" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Schedule_Select_Period_Trainer" FunctionName="Хранилище AtlantModel.Schedule_Select_Period_Trainer">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AtlantModel.Schedule_Select_Period_Trainer_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="День" ColumnName="День" />
+                <ScalarProperty Name="НачалаЗанятия" ColumnName="НачалаЗанятия" />
+                <ScalarProperty Name="КонецЗанятия" ColumnName="КонецЗанятия" />
+                <ScalarProperty Name="Спортзал" ColumnName="Спортзал" />
+                <ScalarProperty Name="Группа" ColumnName="Группа" />
+                <ScalarProperty Name="ВидСпорта" ColumnName="ВидСпорта" />
+                <ScalarProperty Name="Тренер" ColumnName="Тренер" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Schedule_Select_Room" FunctionName="Хранилище AtlantModel.Schedule_Select_Room">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AtlantModel.Schedule_Select_Room_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="День" ColumnName="День" />
+                <ScalarProperty Name="НачалаЗанятия" ColumnName="НачалаЗанятия" />
+                <ScalarProperty Name="КонецЗанятия" ColumnName="КонецЗанятия" />
+                <ScalarProperty Name="Спортзал" ColumnName="Спортзал" />
+                <ScalarProperty Name="Группа" ColumnName="Группа" />
+                <ScalarProperty Name="ВидСпорта" ColumnName="ВидСпорта" />
+                <ScalarProperty Name="Тренер" ColumnName="Тренер" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Schedule_Select_Trainer" FunctionName="Хранилище AtlantModel.Schedule_Select_Trainer">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AtlantModel.Schedule_Select_Trainer_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="День" ColumnName="День" />
+                <ScalarProperty Name="НачалаЗанятия" ColumnName="НачалаЗанятия" />
+                <ScalarProperty Name="КонецЗанятия" ColumnName="КонецЗанятия" />
+                <ScalarProperty Name="Спортзал" ColumnName="Спортзал" />
+                <ScalarProperty Name="Группа" ColumnName="Группа" />
+                <ScalarProperty Name="ВидСпорта" ColumnName="ВидСпорта" />
+                <ScalarProperty Name="Тренер" ColumnName="Тренер" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Section_Delete" FunctionName="Хранилище AtlantModel.Section_Delete" />
+          <FunctionImportMapping FunctionImportName="Section_Insert" FunctionName="Хранилище AtlantModel.Section_Insert" />
+          <FunctionImportMapping FunctionImportName="Section_Select" FunctionName="Хранилище AtlantModel.Section_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AtlantModel.Section_Select_Result">
+                <ScalarProperty Name="sections_id" ColumnName="sections_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Section_Update" FunctionName="Хранилище AtlantModel.Section_Update" />
+          <FunctionImportMapping FunctionImportName="Users_Insert" FunctionName="Хранилище AtlantModel.Users_Insert" />
+          <FunctionImportMapping FunctionImportName="Users_Role" FunctionName="Хранилище AtlantModel.Users_Role" />
+          <FunctionImportMapping FunctionImportName="Users_Select" FunctionName="Хранилище AtlantModel.Users_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AtlantModel.Users_Select_Result">
+                <ScalarProperty Name="БазаДанных" ColumnName="БазаДанных" />
+                <ScalarProperty Name="ИмяПользователя" ColumnName="ИмяПользователя" />
+                <ScalarProperty Name="Роль" ColumnName="Роль" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Users_Update" FunctionName="Хранилище AtlantModel.Users_Update" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e5a3a18781bd4317888ce162c12d2d97" Name="Diagram1">
+        <EntityTypeShape EntityType="AtlantModel.Client_in_Group" Width="1.5" PointX="8" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AtlantModel.Customer" Width="1.5" PointX="5.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AtlantModel.Equipment" Width="1.5" PointX="1.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="AtlantModel.Groups" Width="1.5" PointX="5.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AtlantModel.Instructor" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AtlantModel.Rooms" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AtlantModel.Schedule" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AtlantModel.Sections" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AtlantModel.Time" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AtlantModel.Time_off_weekday" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AtlantModel.Weekday" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="AtlantModel.FK_Client_in_Group_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="AtlantModel.FK_Client_in_Group_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="AtlantModel.FK_Rooms_Equipment" ManuallyRouted="false" />
+        <AssociationConnector Association="AtlantModel.FK_Schedule_Instructor" ManuallyRouted="false" />
+        <AssociationConnector Association="AtlantModel.FK_Schedule_Rooms" ManuallyRouted="false" />
+        <AssociationConnector Association="AtlantModel.FK_Schedule_Sections" ManuallyRouted="false" />
+        <AssociationConnector Association="AtlantModel.FK_Schedule_Time" ManuallyRouted="false" />
+        <AssociationConnector Association="AtlantModel.FK_Schedule_Time1" ManuallyRouted="false" />
+        <AssociationConnector Association="AtlantModel.FK_Time_off_weekday_Time" ManuallyRouted="false" />
+        <AssociationConnector Association="AtlantModel.FK_Time_off_weekday_Weekday" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

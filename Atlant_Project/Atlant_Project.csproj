@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D62F0036-7E75-4EB8-B5D9-6CEDD33968ED}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Atlant_Project</RootNamespace>
+    <AssemblyName>Atlant_Project</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bunifu.Core">
+      <HintPath>E:\Source\C#\bunifu-phonebook-master\Bunifu phonebook (Entity Framework)\bin\Debug\Bunifu.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.Json">
+      <HintPath>E:\Source\C#\bunifu-phonebook-master\Bunifu phonebook (Entity Framework)\bin\Debug\Bunifu.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuButton">
+      <HintPath>E:\Source\C#\bunifu-phonebook-master\Bunifu phonebook (Entity Framework)\bin\Debug\Bunifu.UI.WinForms.BunifuButton.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuCheckBox">
+      <HintPath>E:\Source\C#\bunifu-phonebook-master\Bunifu phonebook (Entity Framework)\bin\Debug\Bunifu.UI.WinForms.BunifuCheckBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuDataGridView">
+      <HintPath>E:\Source\C#\bunifu-phonebook-master\Bunifu phonebook (Entity Framework)\bin\Debug\Bunifu.UI.WinForms.BunifuDataGridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuDropdown">
+      <HintPath>E:\Source\C#\bUNIFU\Bunifu.UI.WinForms.BunifuDropdown.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuImageButton">
+      <HintPath>E:\Source\C#\bUNIFU\Bunifu.UI.WinForms.BunifuImageButton.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuTextbox">
+      <HintPath>E:\Source\C#\bunifu-phonebook-master\Bunifu phonebook (Entity Framework)\bin\Debug\Bunifu.UI.WinForms.BunifuTextbox.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuToolTip">
+      <HintPath>E:\Source\C#\bunifu-phonebook-master\Bunifu phonebook (Entity Framework)\bin\Debug\Bunifu.UI.WinForms.BunifuToolTip.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu_UI_v1.5.3">
+      <HintPath>E:\Source\C#\bunifu-phonebook-master\Bunifu phonebook (Entity Framework)\bin\Debug\Bunifu_UI_v1.5.3.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Snackbar">
+      <HintPath>E:\Source\C#\bunifu-phonebook-master\Bunifu phonebook (Entity Framework)\bin\Debug\Snackbar.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class\DGVPrinter.cs" />
+    <Compile Include="Class\Settings.cs" />
+    <Compile Include="Class\SingleConnection.cs" />
+    <Compile Include="Class\SQLRoles.cs" />
+    <Compile Include="EntityFramework\AtlantModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AtlantModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\AtlantModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\AtlantModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AtlantModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Client_in_Group.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Client_Select_Result.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Coachs_Select_Result.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Customer.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Equipment.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Groups.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Group_Select_Result.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Instructor.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\List_clients_in_group_Result.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Rooms.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Schedule.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Schedule_Select_Period_Result.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Schedule_Select_Period_Room_Result.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Schedule_Select_Period_Trainer_Result.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Schedule_Select_Result.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Schedule_Select_Room_Result.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Schedule_Select_Trainer_Result.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Sections.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Section_Select_Result.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Time.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Time_off_weekday.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Users_Select_Result.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Weekday.cs">
+      <DependentUpon>AtlantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\frmAddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\frmAddUser.Designer.cs">
+      <DependentUpon>frmAddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\frmEditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\frmEditUser.Designer.cs">
+      <DependentUpon>frmEditUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AuthForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AuthForm.Designer.cs">
+      <DependentUpon>AuthForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clients\frmAddClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Clients\frmAddClient.Designer.cs">
+      <DependentUpon>frmAddClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clients\frmEditClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Clients\frmEditClient.Designer.cs">
+      <DependentUpon>frmEditClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Group\frmAddClientGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Group\frmAddClientGroup.Designer.cs">
+      <DependentUpon>frmAddClientGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Group\frmAddGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Group\frmAddGroup.Designer.cs">
+      <DependentUpon>frmAddGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Group\frmListGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Group\frmListGroup.Designer.cs">
+      <DependentUpon>frmListGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Loading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Loading.Designer.cs">
+      <DependentUpon>Loading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ScheduleE\frmAddSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ScheduleE\frmAddSchedule.Designer.cs">
+      <DependentUpon>frmAddSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecondForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SecondForm.Designer.cs">
+      <DependentUpon>SecondForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Sections\frmAddSections.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Sections\frmAddSections.Designer.cs">
+      <DependentUpon>frmAddSections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Sections\frmSelectSections.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Sections\frmSelectSections.Designer.cs">
+      <DependentUpon>frmSelectSections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trainer\frmAddTrainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Trainer\frmAddTrainer.Designer.cs">
+      <DependentUpon>frmAddTrainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Trainer\frmEditTrainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Trainer\frmEditTrainer.Designer.cs">
+      <DependentUpon>frmEditTrainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transparentBG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transparentBG.designer.cs">
+      <DependentUpon>transparentBG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transparentBg1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transparentBg1.designer.cs">
+      <DependentUpon>transparentBg1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserInterface\Admin_uc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserInterface\Admin_uc.Designer.cs">
+      <DependentUpon>Admin_uc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserInterface\Clients_uc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserInterface\Clients_uc.Designer.cs">
+      <DependentUpon>Clients_uc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserInterface\Groups_uc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserInterface\Groups_uc.Designer.cs">
+      <DependentUpon>Groups_uc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserInterface\Schedule_uc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserInterface\Schedule_uc.Designer.cs">
+      <DependentUpon>Schedule_uc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserInterface\Sections_uc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserInterface\Sections_uc.Designer.cs">
+      <DependentUpon>Sections_uc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserInterface\Settings_uc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserInterface\Settings_uc.Designer.cs">
+      <DependentUpon>Settings_uc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserInterface\Trainers_uc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserInterface\Trainers_uc.Designer.cs">
+      <DependentUpon>Trainers_uc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Icons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Icons.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Admin\frmAddUser.resx">
+      <DependentUpon>frmAddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\frmEditUser.resx">
+      <DependentUpon>frmEditUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AuthForm.resx">
+      <DependentUpon>AuthForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clients\frmAddClient.resx">
+      <DependentUpon>frmAddClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clients\frmEditClient.resx">
+      <DependentUpon>frmEditClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Group\frmAddClientGroup.resx">
+      <DependentUpon>frmAddClientGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Group\frmAddGroup.resx">
+      <DependentUpon>frmAddGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Group\frmListGroup.resx">
+      <DependentUpon>frmListGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Loading.resx">
+      <DependentUpon>Loading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ScheduleE\frmAddSchedule.resx">
+      <DependentUpon>frmAddSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SecondForm.resx">
+      <DependentUpon>SecondForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Sections\frmAddSections.resx">
+      <DependentUpon>frmAddSections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Sections\frmSelectSections.resx">
+      <DependentUpon>frmSelectSections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trainer\frmAddTrainer.resx">
+      <DependentUpon>frmAddTrainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Trainer\frmEditTrainer.resx">
+      <DependentUpon>frmEditTrainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transparentBG.resx">
+      <DependentUpon>transparentBG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transparentBg1.resx">
+      <DependentUpon>transparentBg1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserInterface\Admin_uc.resx">
+      <DependentUpon>Admin_uc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserInterface\Clients_uc.resx">
+      <DependentUpon>Clients_uc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserInterface\Groups_uc.resx">
+      <DependentUpon>Groups_uc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserInterface\Schedule_uc.resx">
+      <DependentUpon>Schedule_uc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserInterface\Sections_uc.resx">
+      <DependentUpon>Sections_uc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserInterface\Settings_uc.resx">
+      <DependentUpon>Settings_uc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserInterface\Trainers_uc.resx">
+      <DependentUpon>Trainers_uc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Icons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EntityDeploy Include="EntityFramework\AtlantModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AtlantModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EntityFramework\AtlantModel.edmx.diagram">
+      <DependentUpon>AtlantModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_white_test.png" />
+    <None Include="Resources\logo_white.png" />
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\trainer_gray.png" />
+    <None Include="Resources\trainer_blue.png" />
+    <None Include="Resources\settings_gray.png" />
+    <None Include="Resources\settings_blue.png" />
+    <None Include="Resources\sections_gray.png" />
+    <None Include="Resources\sections_blue.png" />
+    <None Include="Resources\min_white.png" />
+    <None Include="Resources\min_gray.png" />
+    <None Include="Resources\groups_gray.png" />
+    <None Include="Resources\groups_blue.png" />
+    <None Include="Resources\close_white.png" />
+    <None Include="Resources\close_gray.png" />
+    <None Include="Resources\clients_gray.png" />
+    <None Include="Resources\clients_blue.png" />
+    <None Include="Resources\calendar_gray.png" />
+    <None Include="Resources\calendar_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_user.png" />
+    <None Include="Resources\add_role.png" />
+    <None Include="Resources\add_user.png" />
+    <None Include="Resources\exit.png" />
+    <None Include="Resources\admin.png" />
+    <None Include="Resources\preload.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EntityFramework\AtlantModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AtlantModel.edmx</DependentUpon>
+      <LastGenOutput>AtlantModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EntityFramework\AtlantModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AtlantModel.edmx</DependentUpon>
+      <LastGenOutput>AtlantModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_po.png" />
+    <None Include="Resources\calendar_p.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
